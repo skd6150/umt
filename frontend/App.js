@@ -6,9 +6,10 @@ import { createStackNavigator } from 'react-navigation-stack';
 import MainScreen from './components/MainScreen'
 
 const AppNavigator = createStackNavigator({
-  Home: {
+  Home: 
+  {
     screen: MainScreen,
-  }
+  },
 })
 
 export default createAppContainer(AppNavigator);

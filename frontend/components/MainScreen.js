@@ -4,17 +4,17 @@ import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 // 하단 탭에 들어가는 컴포넌트
-import ReportTab from './ReportTab/ReportTab'
-import SearchTab from './SearchTab/SearchTab'
+import ReportTab from './ReportStack/ReportTab'
+import SearchList from './SearchStack/SearchList'
 
 // 하단 탭 네비게이터의 설정을 저장하는 obj
 const BottomTabNavigator = createMaterialBottomTabNavigator(
     {
         ReportTab: { screen: ReportTab },
-        SearchTab: { screen: SearchTab },
+        SearchList: { screen: SearchList },
     },
     {
-        initialRouteName: 'ReportTab',
+        initialRouteName: 'SearchList',
         activeColor: '#EF7777',
         inactiveColor: '#55595E',
         barStyle: { backgroundColor: '#FFFFFF' },
