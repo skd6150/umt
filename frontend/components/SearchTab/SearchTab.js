@@ -1,69 +1,65 @@
+// SearchTab.js
+// 앱 메인 화면에서의 '검색' 탭
+
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { List } from 'react-native-paper';
-import { ListItem } from 'react-native-material-ui';
+import { createStackNavigator } from 'react-navigation-stack';
 
-// Test용 데이터 array : 나중에 지울것
-const ThiefList = [
-    {
-        phonenumber: "010-ffwf-fnwa",
-        company: "배달병",
-        food: "치킨",
-        time: "2010.12.04",
-        trust: 3 // 1 == Good, 2 == Bad, 3 == Worst?
-    },
-    {
-        phonenumber: "010-dswf-fjsf",
-        company: "민달의 배족",
-        food: "피자",
-        time: "2100.11.11",
-        trust: 1 // 1 == Good, 2 == Bad, 3 == Worst?
-    },
-    {
-        phonenumber: "010-dswf-fjsf",
-        company: "회사",
-        food: "분식",
-        time: "1945.08.15",
-        trust: 2 // 1 == Good, 2 == Bad, 3 == Worst?
-    },
-    {
-        phonenumber: "010-aaaa-bbbb",
-        company: "민달의 배족",
-        food: "한식",
-        time: "2019.11.08",
-        trust: 1 // 1 == Good, 2 == Bad, 3 == Worst?
-    },
-];
+// Test용 데이터 함수 : 나중에 지울것
+import { getData } from '../tmp/fakedata';
+import DeliverInfor from './DeliverInfor';
+
+// SearchTab에서 쓰이는 스택 네비게이터
+const SeacrhStack = createStackNavigator({
+    Search: {screen: () => <SearchTab />},
+    Detail: {screen: () => <DeliverInfor />},
+})
 
 export default class SearchTab extends Component 
 {
     // Flatlist 관련 state
     state = {
       refreshing: false,
-      data: ThiefList,
+      data: getData(20),
       // TODO: backend 구현 내용에 맞게 받을 데이터 수정
     };
 
     // 리스트에 끝에 도달하면 호출되는 Method
-    onEndReached = () => {};
+    // 10개의 데이터를 state.data에 추가한다.
+    // TODO : 오랫동안 리스트를 밀었을 때 최적화
+    onEndReached = () => {
+        this.setState(state => ({
+            data: [
+              ...state.data,
+              ...getData(),
+            ]
+          }));
+    };
 
     // Pull to Refresh를 시도할 때 호출되는 Method
-    onRefresh = () => {};
+    // 데이터 20개를 다시 받는다.
+    onRefresh = () => {
+        this.setState({data: getData(20)});
+    };
     
     // 리스트를 클릭할 때 호출되는 Method
-    onPress = () => {};
+    onPress = (item) => {
+        this.props.navigation.
+    };
 
     // 리스트의 내용을 출력할 때 호출되는 Method
     onRenderItem = ({ item }) => {
         return (
-            <ListItem
-                divider
-                centerElement={{
-                    primaryText: item.phonenumber,
-                    tertiaryText: item.company
-                }}
-                onPress={this.onPress}
+            <List.Item
+                title={item.phonenumber}
+                description={item.company}
+                onPress={() => this.onPress}
+                // TODO : 신용에 따라 맞춤 아이콘으로 적용하기
+                left={props => 
+                    <List.Icon color={item.color} icon="account" />
+                }
             />
         );
     };
@@ -82,7 +78,7 @@ export default class SearchTab extends Component
             <FlatList 
             data={this.state.data}
             renderItem={this.onRenderItem}
-            keyExtractor={(item, index) => item.id}
+            keyExtractor={(item, key) => item.key}
             onEndReached={this.onEndReached}
             onEndReachedThreshold={1}
             refreshing={this.state.refreshing}
