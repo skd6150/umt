@@ -7,7 +7,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import ReportTab from './ReportTab/ReportTab'
 import SearchTab from './SearchTab/SearchTab'
 
-// 하단 탭 네비게이터 생성
+// 하단 탭 네비게이터의 설정을 저장하는 obj
 const BottomTabNavigator = createMaterialBottomTabNavigator(
     {
         ReportTab: { screen: ReportTab },
@@ -15,16 +15,18 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
     },
     {
         initialRouteName: 'ReportTab',
-        activeColor: '#136FE8',
+        activeColor: '#EF7777',
         inactiveColor: '#55595E',
         barStyle: { backgroundColor: '#FFFFFF' },
     }
 );
-  
+
+// 하단 탭 네비게이터 생성
 const AppTabContainet = createAppContainer(BottomTabNavigator);
 
 export default class MainScreen extends Component {
 
+    // 상단 네비게이터 바 옵션
     static navigationOptions = 
     {
         title: '빼먹',
@@ -39,6 +41,7 @@ export default class MainScreen extends Component {
         },
     }
     
+    // 하단 네비게이터 바 표시
     render() {
         return (
             <AppTabContainet />
