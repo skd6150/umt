@@ -11,6 +11,11 @@ import { getData } from '../tmp/fakedata';
 
 export default class SearchTab extends Component 
 {
+    // 네비게이터 옵션
+    static navigationOptions = {
+        header: null
+    }
+
     // Flatlist 관련 state
     state = {
       refreshing: false,
@@ -31,8 +36,9 @@ export default class SearchTab extends Component
     };
 
     // 리스트 항목을 누르면 호출되는 Method
+    // Detail 창으로 이동, item 정보 전달
     onPress = () => {
-        this.props.navigation.navigate('ListDetail')
+        this.props.navigation.push('Detail')
     };
 
     // Pull to Refresh를 시도할 때 호출되는 Method
@@ -55,14 +61,6 @@ export default class SearchTab extends Component
             />
         );
     };
-
-    // 아래 네비게이션 바에 관한 옵션
-    static navigationOptions = {
-        title: "검색",
-        tabBarIcon: ({ tintColor }) => (
-            <MaterialIcons name='search' size={24} color={tintColor}/> 
-        ),
-    }
 
     // '검색' 탭에 표시되는 내용
     render() {

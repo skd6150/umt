@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import ReportTab from './ReportTab'
 
-export const ReportStack = StackNavigator(
-    
+const ReportStack = createStackNavigator(
     {
-        ReportTab: { screen: ReportTab },
+        Report: { screen: ReportTab },
     }, 
     
     {
-        initialRouteName: 'ReportTab',
+        initialRouteName: 'Report',
+        headerBackTitleVisible: false
     }
-)
+);
+
+const ReportStackContainer = createAppContainer(ReportStack);
+
+export default ReportStackContainer;

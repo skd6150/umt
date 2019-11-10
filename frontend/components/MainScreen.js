@@ -2,19 +2,36 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { MaterialIcons } from '@expo/vector-icons';
 
 // 하단 탭에 들어가는 컴포넌트
-import ReportTab from './ReportStack/ReportTab'
-import SearchList from './SearchStack/SearchList'
+import SearchStackContainer from './SearchStack/SearchStack';
+import ReportStackContainer from './ReportStack/ReportStack';
 
 // 하단 탭 네비게이터의 설정을 저장하는 obj
 const BottomTabNavigator = createMaterialBottomTabNavigator(
     {
-        ReportTab: { screen: ReportTab },
-        SearchList: { screen: SearchList },
+        Report: { 
+            screen: ReportStackContainer,
+            navigationOptions:  {
+                title: "신고",
+                tabBarIcon: ({ tintColor }) => (
+                    <MaterialIcons name='report' size={24} color={tintColor}/> 
+                ),
+            }
+        },
+        Search: { 
+            screen: SearchStackContainer, 
+            navigationOptions:  {
+                title: "검색",
+                tabBarIcon: ({ tintColor }) => (
+                    <MaterialIcons name='search' size={24} color={tintColor}/> 
+                ),
+            }
+        },
     },
     {
-        initialRouteName: 'SearchList',
+        initialRouteName: 'Report',
         activeColor: '#EF7777',
         inactiveColor: '#55595E',
         barStyle: { backgroundColor: '#FFFFFF' },

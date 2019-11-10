@@ -4,14 +4,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default class ReportTab extends Component 
 {
-    // 아래 네비게이션 바에 관한 옵션
+    // 네비게이터 옵션
     static navigationOptions = {
-        title: "신고",
-        tabBarIcon: ({ tintColor }) => (
-            <MaterialIcons name='report' size={24} color={tintColor}/> 
-        ),
+        header: null
     }
-
+    
     // '신고' 탭에 표시되는 내용
     render() {
         return (
