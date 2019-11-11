@@ -2,7 +2,7 @@
 // '검색' 탭에서 자세한 정보를 볼 때 나오는 탭
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
 
 export default class ListDetail extends Component 
 {

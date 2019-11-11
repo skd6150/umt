@@ -2,7 +2,7 @@
 // 앱 메인 화면에서의 '검색' 탭
 
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { List } from 'react-native-paper';
 
@@ -65,6 +65,7 @@ export default class SearchTab extends Component
     // '검색' 탭에 표시되는 내용
     render() {
         return (
+            <View>
             <FlatList 
             data={this.state.data}
             renderItem={this.onRenderItem}
@@ -73,7 +74,8 @@ export default class SearchTab extends Component
             onEndReachedThreshold={1}
             refreshing={this.state.refreshing}
             onRefresh={this.onRefresh}
-            />       
+            />  
+            </View>   
         );
     }
 }

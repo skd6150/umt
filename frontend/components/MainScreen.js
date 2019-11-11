@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -10,6 +10,7 @@ import ReportStackContainer from './ReportStack/ReportStack';
 
 // 하단 탭 네비게이터의 설정을 저장하는 obj
 const BottomTabNavigator = createMaterialBottomTabNavigator(
+
     {
         Report: { 
             screen: ReportStackContainer,
@@ -30,6 +31,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
             }
         },
     },
+
     {
         initialRouteName: 'Report',
         activeColor: '#EF7777',
@@ -43,25 +45,35 @@ const AppTabContainet = createAppContainer(BottomTabNavigator);
 
 export default class MainScreen extends Component {
 
+    componentDidMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setBarStyle('light-content');
+        });
+    }
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
+
     // 상단 네비게이터 바 옵션
     static navigationOptions = 
     {
         title: '빼먹',
         headerStyle: 
         {
-            backgroundColor: '#fff',
+            backgroundColor: '#000',
         },
-        headerTintColor: '#000',
+        headerTintColor: '#fff',
         headerTitleStyle: 
         {
             fontWeight: 'normal',
+            fontSize: 100
         },
     }
     
     // 하단 네비게이터 바 표시
     render() {
         return (
-            <AppTabContainet />
+            <AppTabContainet/>
         )
     }
 }
