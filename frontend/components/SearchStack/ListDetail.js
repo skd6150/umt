@@ -15,6 +15,8 @@ export default class Detail extends Component {
     console.log(idk);
 
     // return에서 JSX를 통해 idk의 값에서 내용을 표현하면 끝.
-    return;
+    return(
+      <View/>
+    );
   }
 }
