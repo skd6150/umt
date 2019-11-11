@@ -66,7 +66,7 @@ export default class MainScreen extends Component {
         headerTitleStyle: 
         {
             fontWeight: 'normal',
-            fontSize: 100
+            fontSize: 25
         },
     }
     

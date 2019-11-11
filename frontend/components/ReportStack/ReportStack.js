@@ -9,7 +9,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import ReportTab from './ReportTab'
 
 const ReportStack = createStackNavigator(
-
     {
         Report: { screen: ReportTab },
     }, 
