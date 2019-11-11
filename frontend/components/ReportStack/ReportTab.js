@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default class ReportTab extends Component 
@@ -13,7 +13,7 @@ export default class ReportTab extends Component
     render() {
         return (
             <View style={styles.container}>
-                <Text>ReportTab</Text>
+                <Text>신고 ㄱㄱ</Text>
             </View>
         );
     }
@@ -25,5 +25,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 20,
+        marginHorizontal: 10
     }
 });

@@ -6,15 +6,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import ReportTab from './ReportTab'
+import TermsAndConditions from './TermsAndConditions';
+import ReportTab from './ReportTab';
 
 const ReportStack = createStackNavigator(
     {
-        Report: { screen: ReportTab },
+        Term: { screen: TermsAndConditions },
+        Report: { screen: ReportTab }
     }, 
     
     {
-        initialRouteName: 'Report',
+        initialRouteName: 'Term',
         headerBackTitleVisible: false
     }
 );
