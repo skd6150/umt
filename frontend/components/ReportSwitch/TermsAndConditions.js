@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Button } from 'react-native-paper';
 
 // ScrollView가 끝에 근접했는지 확인하는 Method
 const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
@@ -14,14 +14,6 @@ export default class TermsAndConditions extends Component
     // 동의 상태 확인
     state = {
         scrolled: false,
-        accepted: false
-    }
-
-    // Component가 Mount되었을 때 실행됨
-    componentDidMount()
-    {
-        if (this.state.accepted)
-            this.moveToReport();
     }
 
     // '신고' 탭으로 이동하는 Method
@@ -83,10 +75,10 @@ export default class TermsAndConditions extends Component
                 </View>
                 </View>
             <View style={styles.container_button}>
-            <TouchableOpacity disabled={ !this.state.scrolled } onPress={ ()=>this.moveToReport() } 
+            <Button mode='contained' disabled={ !this.state.scrolled } onPress={ ()=>this.moveToReport() } 
             style={ this.state.scrolled ? styles.button : styles.buttonDisabled }>
-              <Text style={styles.buttonLabel}>Accept</Text>
-            </TouchableOpacity>
+              <Text style={styles.buttonLabel}>약관에 동의합니다.</Text>
+            </Button>
             </View>
       </View>
     );
@@ -94,7 +86,7 @@ export default class TermsAndConditions extends Component
 
 }
 
-const styles = {
+const styles = StyleSheet.create({
 
   container:{
     marginTop: 20,
@@ -112,7 +104,13 @@ const styles = {
 
   container_scrollview:{
     marginTop: 20,
-    flex: 15
+    flex: 15,
+    padding: 5,
+    borderColor: '#999',
+    borderBottomWidth:2,
+    borderLeftWidth:2,
+    borderRightWidth:2,
+    borderTopWidth:2
   },
 
   title: {
@@ -121,15 +119,11 @@ const styles = {
   },
 
   button:{
-      backgroundColor: '#136AC7',
-      borderRadius: 5,
-      padding: 10
+      backgroundColor: '#EF7777',
   },
 
   buttonDisabled:{
     backgroundColor: '#999',
-    borderRadius: 5,
-    padding: 10
  },
 
   buttonLabel:{
@@ -138,4 +132,4 @@ const styles = {
       alignSelf: 'center'
   }
 
-}
+})
