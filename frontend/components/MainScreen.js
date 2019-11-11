@@ -60,7 +60,7 @@ export default class MainScreen extends Component {
         title: '빼먹',
         headerStyle: 
         {
-            backgroundColor: '#000',
+            backgroundColor: '#EF7777',
         },
         headerTintColor: '#fff',
         headerTitleStyle: 
