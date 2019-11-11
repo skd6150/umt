@@ -6,14 +6,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 // 하단 탭에 들어가는 컴포넌트
 import SearchStackContainer from './SearchStack/SearchStack';
-import ReportStackContainer from './ReportStack/ReportStack';
+import ReportSwitchContainer from './ReportSwitch/ReportSwitch';
 
 // 하단 탭 네비게이터의 설정을 저장하는 obj
 const BottomTabNavigator = createMaterialBottomTabNavigator(
 
     {
         Report: { 
-            screen: ReportStackContainer,
+            screen: ReportSwitchContainer,
             navigationOptions:  {
                 title: "신고",
                 tabBarIcon: ({ tintColor }) => (
