@@ -33,9 +33,6 @@ export default class SearchTab extends Component {
 
   // 리스트 항목을 누르면 호출되는 Method
   // Detail 창으로 이동, item 정보 전달
-  onPress = () => {
-    this.props.navigation.push("Detail");
-  };
 
   // Pull to Refresh를 시도할 때 호출되는 Method
   // 데이터 20개를 다시 받는다.
@@ -45,11 +42,14 @@ export default class SearchTab extends Component {
 
   // 리스트의 내용을 출력할 때 호출되는 Method
   onRenderItem = ({ item }) => {
+    
     return (
       <List.Item
         title={item.phonenumber}
         description={item.company}
-        onPress={this.onPress}
+        onPress={() => {
+          this.props.navigation.navigate("Detail", { item });
+        }}
         // TODO : 신용에 따라 맞춤 아이콘으로 적용하기
         left={props => <List.Icon color={item.color} icon="account" />}
       />
@@ -58,6 +58,7 @@ export default class SearchTab extends Component {
   componentDidMount() {
     stealFoodType();
   }
+
   // '검색' 탭에 표시되는 내용
   render() {
     return (

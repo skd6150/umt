@@ -16,6 +16,7 @@
 import { random, phone, company, name } from "faker";
 import { Avatar } from "react-native-paper";
 
+const colors = ["#EF7777", "#dee823", "#33de49"];
 const foodArr = [
   "chicken",
   "pizza",
@@ -32,29 +33,50 @@ const stealDate = [
   "2019/09/15",
   "2019/09/04"
 ];
-const colors = ["#EF7777", "#e66815", "#33ff00"];
+export const getFood = (count = 5) => {
+  const arr = [];
+
+  for (var i = 0; i < count; i++) {
+    const _randomStealType = foodArr[1];
+    const _randomStealDate = stealDate[1];
+
+    
+    arr.push({
+      randomStealType: _randomStealType,
+      randomStealDate: _randomStealDate
+    });
+  }
+  
+  return arr;
+};
 
 // 랜덤 데이터 Return : 기본으로 10개의 데이터를 돌려줌
 export const getData = (count = 10) => {
   const arr = []; // arr 형식으로 리턴함.
-  for (let i = 0; i < count; i++) {
+  for (var i = 0; i < count; i++) {
+    const index = i;
     const key = random.uuid();
     const phonenumber = phone.phoneNumber("010-####-####");
     const _company = company.companyName();
+    const _companyPhoneNumber = phone.phoneNumber("032-####-####");
 
     // 신용도 : 1 == 안전, 2 == 주의, 3 == 위험
-    const credit = random.number({ min: 0, max: 3 });
-    const color = getColor(this.credit);
+    const credit = random.number({ min: 0, max: 2 });
+    const color = colors[credit];
+
+    const foodCount = (random.number() % 6) + 1;
 
     arr.push({
       key,
       phonenumber,
       company: _company,
       credit,
-      color
+      color,
+      companyPhoneNumber: _companyPhoneNumber,
+      index
     });
   }
-
+  
   return arr;
 };
 
@@ -73,10 +95,6 @@ export const stealFoodType = () => {
   }
 
   return stealHistory;
-};
-
-export const getColor = credit => {
-  return colors[credit];
 };
 
 export const getName = () => {

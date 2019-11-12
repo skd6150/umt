@@ -4,12 +4,12 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
 import SearchList from "./SearchList";
-import ListDetail from "./ListDetail";
+import Detail from "./ListDetail";
 
 const SearchStack = createStackNavigator(
   {
     List: { screen: SearchList },
-    Detail: { screen: ListDetail }
+    Detail: { screen: Detail }
   },
 
   {
